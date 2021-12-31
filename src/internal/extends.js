@@ -4,7 +4,7 @@ const ESLintExtends = {
   AIRBNB_RECOMMENDED_EXTEND: 'eslint-config-airbnb-base', // eslint-config-airbnb-base
   IMPORT_RECOMMENDED_EXTEND: 'plugin:import/recommended', // eslint-config-import
   IMPORT_TYPESCRIPT_EXTEND: 'plugin:import/typescript', // eslint-config-import
-}
+};
 
 /**
  * 获取所需要的 extends
@@ -21,20 +21,20 @@ function getExtends(options) {
       eslintExtends.push(ESLintExtends.VUE_RECOMMENDED_EXTEND);
       if (isSupportTs) {
         eslintExtends.shift(ESLintExtends.TS_RECOMMENDED_EXTEND);
-      };
+      }
     }
   } else if (isSupportTs) {
-    eslintExtends.push(ESLintPlugins.TS_RECOMMENDED_EXTEND);
+    eslintExtends.push(ESLintExtends.TS_RECOMMENDED_EXTEND);
   } else {
-    eslintExtends.push(ESLintPlugins.AIRBNB_RECOMMENDED_EXTEND);
+    eslintExtends.push(ESLintExtends.AIRBNB_RECOMMENDED_EXTEND);
   }
 
-  if (esModule) eslintExtends.push(ESLintPlugins.IMPORT_RECOMMENDED_EXTEND);
-  if (esModule && isSupportTs) eslintExtends.push(ESLintPlugins.IMPORT_TYPESCRIPT_EXTEND);
+  if (esModule) eslintExtends.push(ESLintExtends.IMPORT_RECOMMENDED_EXTEND);
+  if (esModule && isSupportTs) eslintExtends.push(ESLintExtends.IMPORT_TYPESCRIPT_EXTEND);
 
   return eslintExtends;
 }
 
 module.exports = {
-  getExtends
+  getExtends,
 };

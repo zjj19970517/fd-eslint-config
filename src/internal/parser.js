@@ -1,22 +1,22 @@
 const Parsers = {
   VUE_SFC_PARSER: 'vue-eslint-parser',
   TS_PARSER: '@typescript-eslint/parser',
-  BABEL_PARSER: '@babel/eslint-parser'
-}
+  BABEL_PARSER: '@babel/eslint-parser',
+};
 
 /**
  * 获取对应的解析器 Parser
  * @param {CustomOptions} options
- * @returns 
+ * @returns
  */
 function getParser(options) {
-  const { ts: isSupportTs, frame } = options;
+  const { ts: isSupportTs, frame, babel } = options;
   const { lib, vueOptions: { sfc } } = frame;
 
   if (typeof lib === 'boolean' && !!lib) {
     // use frame
     if (lib.toLocaleLower() === 'vue') {
-      if (!!sfc) {
+      if (sfc) {
         return Parsers.VUE_SFC_PARSER;
       }
       if (isSupportTs) return Parsers.TS_PARSER;
@@ -24,43 +24,51 @@ function getParser(options) {
     }
   } else if (isSupportTs) {
     return Parsers.TS_PARSER;
-  } else {
+  } else if (babel) {
     return Parsers.BABEL_PARSER;
   }
+
+  return '';
 }
 
 /**
  * 获取 ParserOption
  * @param {CustomOptions} options
- * @returns 
+ * @returns
  */
 function getParserOptions(options) {
-  const { frame } = options;
+  const { frame, esModule } = options;
   const { lib, vueOptions: { sfc, jsx } } = frame;
 
   const baseParserOption = {
     ecmaVersion: 2020,
-    sourceType: "module",
+    sourceType: 'module',
     ecmafeatures: {
       globalReturn: false,
       impliedStrict: false,
       jsx: false,
-      experimentalObjectRestSpread: false
-    }
-  }
+      experimentalObjectRestSpread: false,
+    },
+  };
 
   if (typeof lib === 'boolean' && !!lib) {
     // use frame
     if (lib.toLocaleLower() === 'vue') {
-      if (!!sfc) {
+      if (sfc) {
         baseParserOption.parser = Parsers.VUE_SFC_PARSER;
       }
       baseParserOption.ecmafeatures.jsx = !!jsx;
     }
   }
+
+  if (!esModule) {
+    delete baseParserOption.sourceType;
+  }
+
+  return baseParserOption;
 }
 
 module.exports = {
   getParser,
-  getParserOptions
+  getParserOptions,
 };

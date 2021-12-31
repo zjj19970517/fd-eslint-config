@@ -2,7 +2,7 @@ const ESLintPlugins = {
   VUE_PLUGIN: 'vue', // eslint-plugin-vue
   TS_PLUGIN: '@typescript-eslint', // @typescript-eslint/eslint-plugin
   IMPORT_PLUGIN: 'import', // eslint-plugin-import
-}
+};
 
 /**
  * 获取所需要的 plugins
@@ -17,12 +17,12 @@ function getPlugins(options) {
   if (typeof lib === 'boolean' && !!lib) {
     // use frame
     if (lib.toLocaleLower() === 'vue') {
-      if (!!sfc) {
+      if (sfc) {
         plugins.push(ESLintPlugins.VUE_PLUGIN);
       }
       if (isSupportTs) {
         plugins.shift(ESLintPlugins.TS_PLUGIN);
-      };
+      }
     }
   } else if (isSupportTs) {
     plugins.shift(ESLintPlugins.TS_PLUGIN);
@@ -36,5 +36,5 @@ function getPlugins(options) {
 }
 
 module.exports = {
-  getPlugins
+  getPlugins,
 };

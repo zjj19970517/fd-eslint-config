@@ -13,18 +13,18 @@ function getOverrides(options) {
       overrides.push({
         files: ['*.js'],
         parser: '@babel/eslint-parser',
-      })
+      });
     }
   } else if (isSupportTs) {
     overrides.push({
       files: ['*.js'],
       parser: '@babel/eslint-parser',
-    })
+    });
   }
 
   return overrides;
 }
 
 module.exports = {
-  getOverrides
+  getOverrides,
 };
