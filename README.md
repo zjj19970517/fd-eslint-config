@@ -75,6 +75,7 @@ module.exports = eslintConfig;
 ```js
 {
   ts: false,
+  babel: true,
   frame: {
     lib: 'vue',
     vueOptions: {
@@ -90,6 +91,7 @@ module.exports = eslintConfig;
 ```js
 {
   ts: true,
+  babel: true,
   frame: {
     lib: 'vue',
     vueOptions: {
@@ -105,6 +107,7 @@ module.exports = eslintConfig;
 ```js
 {
   ts: true,
+  babel: true,
   frame: {
     lib: 'vue',
     vueOptions: {
