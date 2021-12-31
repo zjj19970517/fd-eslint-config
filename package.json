@@ -1,0 +1,26 @@
+{
+  "name": "@meils/eslint-config",
+  "version": "1.0.0",
+  "description": "统一的 ESLint 规范配置",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "@meils",
+    "eslint",
+    "eslint-config",
+    "meils"
+  ],
+  "author": "1392372716@qq.com",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/eslint-parser": "^7.16.5",
+    "@typescript-eslint/parser": "^5.8.1",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "vue-eslint-parser": "^8.0.1"
+  }
+}
